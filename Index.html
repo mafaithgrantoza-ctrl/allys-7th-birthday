@@ -16,7 +16,6 @@
       --white: #FFFFFF;
       --text-dark: #333333;
     }
-  
 
     * {
       box-sizing: border-box;
@@ -229,48 +228,53 @@
       margin-bottom: 20px;
     }
 
-    /* Slideshow Carousel */
+    /* Borderless & Resizable Slideshow Container */
     .slideshow-container {
       position: relative;
       width: 100%;
-      height: 380px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      border: 3px solid var(--barbie-pink);
+      max-height: 550px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
       margin-bottom: 20px;
-      background: #fff5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .slide {
       display: none;
       width: 100%;
-      height: 100%;
+      height: auto;
     }
 
     .slide.active {
-      display: block;
-      animation: fadeIn 0.8s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.6s ease-in-out;
     }
 
     .slide img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 550px;
+      object-fit: contain;
+      border-radius: 12px;
     }
 
     .prev-btn, .next-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(224, 0, 123, 0.7);
+      background: rgba(224, 0, 123, 0.75);
       color: white;
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 20px;
       z-index: 10;
       transition: background 0.3s;
     }
@@ -284,11 +288,11 @@
 
     .photo-counter {
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       right: 15px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       color: white;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 12px;
       font-size: 0.75rem;
     }
@@ -394,13 +398,8 @@
       box-shadow: 0 4px 12px rgba(224, 0, 123, 0.3);
     }
 
-    .submit-btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-
     @keyframes fadeIn {
-      from { opacity: 0; }
+      from { opacity: 0.3; }
       to { opacity: 1; }
     }
 
@@ -412,9 +411,11 @@
 </head>
 <body>
 
-  <!-- Background Audio -->
+  <!-- Audio Element -->
   <audio id="barbie-audio" loop preload="auto">
     <source src="Aqua - Barbie Girl.mp3" type="audio/mpeg">
+    <source src="Aqua-Barbie-Girl.mp3" type="audio/mpeg">
+    <source src="barbie-girl.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Audio Toggle Button -->
@@ -446,7 +447,7 @@
     <div class="header-banner">Come Barbie, Let's Go Party!</div>
     <div class="sub-banner">Ally is turning 7! 👑</div>
 
-    <!-- Photo Slideshow Carousel -->
+    <!-- Borderless Resizable Photo Carousel -->
     <div class="slideshow-container" id="slideshow">
       <button class="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
       <button class="next-btn" onclick="changeSlide(1)">&#10095;</button>
@@ -501,31 +502,75 @@
   </div>
 
   <script>
-    // All 67 photo filenames loaded dynamically
+    // Sorted Chronologically from Oldest (2019) to Most Recent (2026)
     const photos = [
-      "IMG_20251029_181752.jpg", "IMG_20250509_111309_673.jpg", "IMG_20250414_084731_594.jpg",
-      "IMG_20241117_172548_400.jpg", "IMG_20241031_103616_007.jpg", "IMG_20240707_121225_973.jpg",
-      "IMG_20240617_141109_662.jpg", "IMG_20240526_162235_851.jpg", "IMG_20240117_090336.jpg",
-      "IMG_20240106_164248.jpg", "IMG_20231222_104112.jpg", "IMG_20231214_103459.jpg",
-      "IMG_20231116_095118.jpg", "IMG_20231028_101829.jpg", "IMG_20230917_091441.jpg",
-      "IMG_20230916_155244.jpg", "IMG_20230805_210811.jpg", "IMG_20230429_151211.jpg",
-      "IMG_20221206_114354.jpg", "IMG_20221206_114333.jpg", "IMG_20221205_195553.jpg",
-      "IMG_20221205_175915.jpg", "IMG_20220906_140011.jpg", "IMG_20220605_225036.jpg",
-      "IMG_20220528_122105.jpg", "IMG_20220524_111323.jpg", "IMG_20220411_085900.jpg",
-      "IMG_20220405_191654.jpg", "IMG_20220313_171016.jpg", "IMG_20210130_215510.jpg",
-      "IMG_20201227_133821.jpg", "a7bcb918-e9c0-4eda-afaa-9a8e55c41c88.jpeg",
-      "28665067-e6e9-4f8c-b39c-ec9a22ca0441.jpeg", "IMG_20201019_094600.jpg",
-      "IMG_20200906_133349.jpg", "IMG_20200716_184818.jpg", "IMG_20200706_180926.jpg",
-      "IMG_20200706_153927_1.jpg", "IMG_20200606_114142.jpg", "IMG_20200606_092538.jpg",
-      "IMG20200523110641.jpg", "IMG_20200506_092450.jpg", "IMG20200430103957.jpg",
-      "IMG_20200407_172513.JPG", "IMG20200319134737.jpg", "IMG20200314111845.jpg",
-      "IMG_20200306_112124.jpg", "IMG_20200215_084700.jpg", "IMG20200211123343.jpg",
-      "IMG_20200113_192332.JPG", "IMG_20191212_152105.jpg", "IMG_20250414_115450_531.jpg",
-      "IMG_20250113_141332_835.jpg", "IMG_20240429_123543_839.jpg", "IMG_20240429_145046_886.jpg",
-      "IMG_20241116_212219_956.jpg", "IMG_20250113_141345_965.jpg", "IMG_20250209_101615_333.jpg",
-      "IMG_20260404_093913_965.jpg", "IMG_20260501_141913_926.jpg", "IMG_20260501_141948_248.jpg",
-      "IMG_20261023_082724.jpg", "IMG_20261023_083209.jpg", "IMG_20260131_091206.jpg",
-      "IMG_20260117_183127.jpg", "IMG_20251205_220754.jpg", "IMG_20251205_220908.jpg"
+      "IMG_20191212_152105.jpg",
+      "IMG_20200113_192332.JPG",
+      "IMG20200211123343.jpg",
+      "IMG_20200215_084700.jpg",
+      "IMG_20200306_112124.jpg",
+      "IMG20200314111845.jpg",
+      "IMG20200319134737.jpg",
+      "IMG_20200407_172513.JPG",
+      "IMG20200430103957.jpg",
+      "IMG_20200506_092450.jpg",
+      "IMG20200523110641.jpg",
+      "IMG_20200606_092538.jpg",
+      "IMG_20200606_114142.jpg",
+      "IMG_20200706_153927_1.jpg",
+      "IMG_20200706_180926.jpg",
+      "IMG_20200716_184818.jpg",
+      "IMG_20200906_133349.jpg",
+      "IMG_20201019_094600.jpg",
+      "IMG_20201227_133821.jpg",
+      "IMG_20210130_215510.jpg",
+      "IMG_20220313_171016.jpg",
+      "IMG_20220405_191654.jpg",
+      "IMG_20220411_085900.jpg",
+      "IMG_20220524_111323.jpg",
+      "IMG_20220528_122105.jpg",
+      "IMG_20220605_225036.jpg",
+      "IMG_20220906_140011.jpg",
+      "IMG_20221205_175915.jpg",
+      "IMG_20221205_195553.jpg",
+      "IMG_20221206_114333.jpg",
+      "IMG_20221206_114354.jpg",
+      "IMG_20230429_151211.jpg",
+      "IMG_20230805_210811.jpg",
+      "IMG_20230916_155244.jpg",
+      "IMG_20230917_091441.jpg",
+      "IMG_20231028_101829.jpg",
+      "IMG_20231116_095118.jpg",
+      "IMG_20231214_103459.jpg",
+      "IMG_20231222_104112.jpg",
+      "IMG_20240106_164248.jpg",
+      "IMG_20240117_090336.jpg",
+      "IMG_20240429_123543_839.jpg",
+      "IMG_20240429_145046_886.jpg",
+      "IMG_20240526_162235_851.jpg",
+      "IMG_20240617_141109_662.jpg",
+      "IMG_20240707_121225_973.jpg",
+      "IMG_20241031_103616_007.jpg",
+      "IMG_20241116_212219_956.jpg",
+      "IMG_20241117_172548_400.jpg",
+      "IMG_20250113_141332_835.jpg",
+      "IMG_20250113_141345_965.jpg",
+      "IMG_20250209_101615_333.jpg",
+      "IMG_20250414_084731_594.jpg",
+      "IMG_20250414_115450_531.jpg",
+      "IMG_20250509_111309_673.jpg",
+      "IMG_20251029_181752.jpg",
+      "IMG_20251205_220754.jpg",
+      "IMG_20251205_220908.jpg",
+      "IMG_20260117_183127.jpg",
+      "IMG_20260131_091206.jpg",
+      "IMG_20260404_093913_965.jpg",
+      "IMG_20260501_141913_926.jpg",
+      "IMG_20260501_141948_248.jpg",
+      "IMG_20261023_082724.jpg",
+      "IMG_20261023_083209.jpg",
+      "28665067-e6e9-4f8c-b39c-ec9a22ca0441.jpeg",
+      "a7bcb918-e9c0-4eda-afaa-9a8e55c41c88.jpeg"
     ];
 
     let currentSlide = 0;
@@ -536,7 +581,7 @@
     photos.forEach((src, idx) => {
       const slide = document.createElement('div');
       slide.className = `slide ${idx === 0 ? 'active' : ''}`;
-      slide.innerHTML = `<img src="${src}" alt="Ally Photo ${idx + 1}" onerror="this.src='https://via.placeholder.com/400x400/E0007B/FFFFFF?text=Ally+Photo+${idx + 1}'">`;
+      slide.innerHTML = `<img src="${src}" alt="Ally Photo ${idx + 1}">`;
       slideshowEl.appendChild(slide);
     });
 
@@ -549,15 +594,18 @@
     }
 
     function changeSlide(direction) {
-      showSlide(currentSlide + direction);
+      showSlide(direction < 0 ? currentSlide - 1 : currentSlide + 1);
     }
 
     setInterval(() => { changeSlide(1); }, 3500);
 
     function openEnvelope() {
       document.getElementById('envelope').classList.add('open');
-      audio.play().catch(() => {});
-      musicBtn.innerText = '🎵';
+      audio.play().then(() => {
+        musicBtn.innerText = '🎵';
+      }).catch(err => {
+        musicBtn.innerText = '🔇';
+      });
 
       setTimeout(() => {
         document.getElementById('envelope-wrapper').classList.add('hidden');
@@ -566,28 +614,22 @@
 
     function toggleAudio() {
       if (audio.paused) {
-        audio.play();
-        musicBtn.innerText = '🎵';
+        audio.play().then(() => {
+          musicBtn.innerText = '🎵';
+        }).catch(err => alert("Audio playback blocked. Ensure Aqua - Barbie Girl.mp3 is uploaded to your GitHub repository!"));
       } else {
         audio.pause();
         musicBtn.innerText = '🔇';
       }
     }
 
-    // Submit RSVP data
     function submitRSVP(e) {
       e.preventDefault();
-      const submitBtn = document.getElementById('submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Sending... 💌";
-
       alert("Thank you for your RSVP! We can't wait to see you at Ally's party! 🎉💖");
       document.getElementById('rsvp-form').reset();
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Send RSVP 💌";
     }
 
-    // Sparkles Particle Background
+    // Sparkles Effect
     const canvas = document.getElementById('sparkle-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
