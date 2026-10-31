@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ally's 7th Birthday Party Invitation!</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Google Fonts for Barbie Header -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Sniglet:wght@800&display=swap" rel="stylesheet">
   <style>
     :root {
       --barbie-pink: #E0007B;
       --barbie-dark-pink: #B80063;
       --barbie-light-pink: #FFD1E8;
       --gold-accent: #D4AF37;
-      --gold-glitter: #F3E5AB;
       --white: #FFFFFF;
       --text-dark: #333333;
     }
@@ -110,13 +109,15 @@
     }
 
     .envelope-title {
-      font-family: 'Pacifico', cursive;
-      color: var(--barbie-pink);
-      text-shadow: 2px 2px 0 var(--white), 0 0 10px rgba(255,255,255,0.8);
-      font-size: 2.2rem;
+      font-family: 'Sniglet', cursive;
+      color: #fff;
+      -webkit-text-stroke: 2px var(--barbie-pink);
+      text-shadow: 3px 3px 0px var(--barbie-dark-pink), 0 0 15px rgba(255,255,255,0.8);
+      font-size: 2.5rem;
       text-align: center;
       margin-bottom: 20px;
       animation: pulse 2s infinite;
+      padding: 0 20px;
     }
 
     .envelope {
@@ -212,19 +213,24 @@
       z-index: 20;
     }
 
-    .header-banner {
-      font-family: 'Pacifico', cursive;
-      color: var(--barbie-pink);
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+    /* Classic Barbie Header Typography Style */
+    .barbie-header {
+      font-family: 'Sniglet', cursive;
+      font-size: 2.4rem;
+      color: #FFFFFF;
+      -webkit-text-stroke: 2.5px var(--barbie-pink);
+      text-shadow: 4px 4px 0px var(--barbie-dark-pink), 0 0 12px rgba(224,0,123,0.4);
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      line-height: 1.2;
     }
 
     .sub-banner {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
-      color: var(--gold-accent);
-      font-weight: bold;
-      margin-top: -10px;
+      font-family: 'Sniglet', cursive;
+      font-size: 1.8rem;
+      color: var(--barbie-pink);
+      -webkit-text-stroke: 1px #fff;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
       margin-bottom: 20px;
     }
 
@@ -307,10 +313,11 @@
     }
 
     .details-card h3 {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Sniglet', cursive;
       color: var(--barbie-pink);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 10px;
+      -webkit-text-stroke: 0.5px #fff;
     }
 
     .detail-item {
@@ -351,10 +358,10 @@
     }
 
     .rsvp-section h3 {
+      font-family: 'Sniglet', cursive;
       color: var(--barbie-pink);
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 15px;
-      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
@@ -444,7 +451,7 @@
 
   <!-- Main Invitation Content -->
   <div class="main-container">
-    <div class="header-banner">Come Barbie, Let's Go Party!</div>
+    <div class="barbie-header">Come Barbie,<br>Let's Go Party!</div>
     <div class="sub-banner">Ally is turning 7! 👑</div>
 
     <!-- Borderless Resizable Photo Carousel -->
